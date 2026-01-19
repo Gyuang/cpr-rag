@@ -28,9 +28,7 @@ Generated Report
 ## Installation
 
 ```bash
-pip install torch transformers peft accelerate
-pip install einops einops_exts
-pip install faiss-cpu  # or faiss-gpu
+pip install -r requirements.txt
 ```
 
 ## Project Structure
@@ -53,6 +51,8 @@ pip install faiss-cpu  # or faiss-gpu
 │   ├── train_organ_classifier.py   # Classifier training
 │   ├── dataset_ct.py               # CT dataset loaders
 │   └── dataset_rag.py              # RAG-aware dataset
+├── scripts/
+│   └── eval_ce_from_predictions.py # Clinical Efficacy evaluation
 └── utils/
     └── radiology_eval.py           # Evaluation metrics
 ```
@@ -75,19 +75,24 @@ accelerate launch train/train_rag_decoder.py \
 ### Evaluation
 
 ```bash
-# Eval-only mode
+# Eval-only mode (generates predictions CSV)
 accelerate launch train/train_rag_decoder.py \
     --config config/radfm/5_graph_pos.yaml \
     --checkpoint ./results/model_best.pt \
     --eval-only
+
+# Clinical Efficacy (CE) evaluation from predictions
+python scripts/eval_ce_from_predictions.py \
+    --predictions ./results/test_predictions_eval.csv \
+    --output ./results/ce_metrics.yaml
 ```
 
 ## Model Weights
 
-Model checkpoints are available on Hugging Face:
+Model checkpoints will be available on Hugging Face (coming soon):
 - [gyuang/cpr-rag-models](https://huggingface.co/gyuang/cpr-rag-models)
 
-Download and place in `models/` directory:
+After downloading, place files in `models/` directory:
 ```
 models/
 ├── checkpoints/

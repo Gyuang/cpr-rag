@@ -1,0 +1,50 @@
+# PyTorch (CUDA 12.1+)
+--find-links https://download.pytorch.org/whl/cu124
+torch==2.6.0
+torchvision==0.21.0
+triton==3.2.0
+
+# Training
+ninja
+deepspeed==0.18.2
+accelerate==1.11.0
+peft==0.11.1
+transformers==4.45.1
+
+# Core dependencies
+einops==0.8.0
+einops-exts==0.0.4
+beartype==0.17.2
+tqdm==4.66.4
+safetensors==0.5.1
+evaluate==0.4.6
+hydra-core==1.3.2
+datasets==4.4.1
+
+# Medical / vision stack
+monai==1.3.0
+SimpleITK==2.4.0
+nibabel==5.3.0
+opencv-python>=4.10.0.84
+
+# Numerics / data
+numpy==2.2.6
+scipy==1.13.1
+pandas==2.2.2
+matplotlib==3.8.4
+Pillow==10.3.0
+
+# NLP / evaluation
+rouge==1.0.1
+rouge_score==0.1.2
+nltk==3.9.2
+bert-score==0.3.13
+sentencepiece==0.2.0
+
+# Retrieval / indexing
+faiss-cpu==1.13.1
+
+# Misc
+requests==2.32.3
+wandb==0.23.0
+scikit-learn==1.5.1
