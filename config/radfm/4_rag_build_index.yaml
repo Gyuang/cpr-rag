@@ -1,0 +1,16 @@
+# RadFM RAG Index Building Config
+# For building organ classifier retrieval index
+
+# Organ embeddings directory (precomputed visual tokens)
+organ_embeddings_dir: /data/CTDoc_output/radfm_vision_embedding_bf16/train
+
+# Label CSV for classifier
+label_csv: /research/04-CT/00-RawData/CT-RATE/dataset/multi_abnormality_labels/train_predicted_labels.csv
+
+# Organ reports for retrieval context
+organ_report_csvs:
+  - /research/04-CT/00-RawData/RadGenome-ChestCT/dataset/radgenome_files/train_region_report.csv
+  - /research/04-CT/00-RawData/RadGenome-ChestCT/dataset/radgenome_files/validation_region_report.csv
+
+# Output path for the index (will be set by script)
+# organ_classifier_index: /workspace/CTDoc/outputs/rag_indices/organ_classifier_index_radfm.pkl

@@ -1,0 +1,42 @@
+# Dataset paths
+manifest: /research/04-CT/00-RawData/RadGenome-ChestCT/ctdoc_splits/radgenome_manifest.csv
+reports: /research/04-CT/00-RawData/RadGenome-ChestCT/ctdoc_splits/radgenome_train_reports.csv
+train_reports: /research/04-CT/00-RawData/RadGenome-ChestCT/ctdoc_splits/radgenome_train_reports.csv
+val_reports: /research/04-CT/00-RawData/RadGenome-ChestCT/ctdoc_splits/radgenome_val_reports.csv
+test_reports: /research/04-CT/00-RawData/RadGenome-ChestCT/ctdoc_splits/radgenome_test_reports.csv
+label_csv: /research/04-CT/00-RawData/CT-RATE/dataset/multi_abnormality_labels/train_predicted_labels.csv
+train_label_csv: /research/04-CT/00-RawData/CT-RATE/dataset/multi_abnormality_labels/train_predicted_labels.csv
+val_label_csv: /research/04-CT/00-RawData/CT-RATE/dataset/multi_abnormality_labels/train_predicted_labels.csv
+test_label_csv: /research/04-CT/00-RawData/CT-RATE/dataset/multi_abnormality_labels/valid_predicted_labels.csv
+dataset_format: radgenome
+report_max_tokens: 2048
+llama_path: meta-llama/Meta-Llama-3.1-8B-Instruct
+tokenizer_path: meta-llama/Meta-Llama-3.1-8B-Instruct
+prompt_style: llama3
+num_visual_tokens: 32
+retrieval_top_k: 0
+retrieval_top_per_organ: 1
+use_raw_organ_features: false
+rag_dropout: 0.25
+organ_report_csvs:
+  - /research/04-CT/00-RawData/RadGenome-ChestCT/dataset/radgenome_files/train_region_report.csv
+  - /research/04-CT/00-RawData/RadGenome-ChestCT/dataset/radgenome_files/validation_region_report.csv
+batch_size: 4
+grad_accum_steps: 4
+epochs: 10
+lr: 1e-4
+weight_decay: 0.01
+warmup_steps: 100
+grad_clip: 1.0
+lora_r: 8
+lora_alpha: 32
+lora_dropout: 0.05
+seed: 42
+wandb_project: ctreport
+freeze_llama: true
+freeze_vision_backbone: true
+freeze_projector: true
+
+# Evaluation settings
+eval_text_metrics: true
+eval_max_new_tokens: 256

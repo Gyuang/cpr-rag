@@ -1,0 +1,68 @@
+# RAG V7: Training with retrieved item's labels
+# rag_positive_labels_from_retrieved: true (use retrieved item's labels)
+
+base_configs:
+  - ../base_rag.yaml
+
+save_dir: ./results/rag_v7_train
+wandb_run_name: radfm-rag-v7-train
+
+vision_backbone: radfm
+
+# === Retrieval Settings ===
+retriever_type: hierarchical
+use_classifier_retrieval: true
+oracle_exact_label: false
+
+hierarchical_abnormal_dir: ./models/rag_indices
+hierarchical_multilabel_ckpt: ./models/checkpoints/radfm_organ_classifier.pt
+organ_classifier_ckpt: ./models/checkpoints/radfm_organ_classifier.pt
+hierarchical_graph_path: ./models/graphs/ct_rate_condprob.pt
+hierarchical_graph_alpha: 0.3
+hierarchical_graph_pool_multiplier: 10
+organ_classifier_index: ./models/rag_indices/organ_classifier_index_radfm.pkl
+
+organ_report_csvs:
+  - /research/04-CT/00-RawData/RadGenome-ChestCT/dataset/radgenome_files/train_region_report.csv
+  - /research/04-CT/00-RawData/RadGenome-ChestCT/dataset/radgenome_files/validation_region_report.csv
+
+# Precomputed vision embeddings (skip vision backbone forward)
+precomputed_vision_dir: /data/CTDoc_output/radfm_vision_embedding_bf16
+
+# V7 Retrieval settings
+retrieval_top_k: 10
+retrieval_top_per_organ: 1
+rag_dropout: 0.25
+visual_dropout_prob: 0.2
+rag_positive_labels_only: true
+rag_positive_labels_from_retrieved: true  # Key V7 setting
+
+# === Model Freezing (LoRA-only training) ===
+freeze_llama: true
+freeze_vision_backbone: true
+freeze_projector: true
+
+# === LoRA Settings ===
+lora_r: 8
+lora_alpha: 32
+lora_dropout: 0.05
+
+# === Training Settings ===
+batch_size: 4
+grad_accum_steps: 8
+epochs: 5
+lr: 5e-5
+weight_decay: 0.01
+warmup_steps: 100
+grad_clip: 1.0
+
+# Memory optimization
+gradient_checkpointing: true
+
+# Evaluation
+eval_text_metrics: true
+eval_max_new_tokens: 512
+val_every: 1
+
+# Logging
+wandb_project: CTDoc_RAG

@@ -1,0 +1,29 @@
+# RadFM Baseline (No RAG)
+base_configs:
+  - ../base_rag.yaml
+
+save_dir: /data/baseline_training/radfm
+
+# Vision backbone - use trained checkpoint for LLaMA 3.1 8B
+vision_backbone: radfm
+radfm_ckpt: /research/04-CT/00-RawData/models/results/radfm_llama3/vision_best.pt
+
+# No retrieval (baseline)
+retrieval_top_k: 0
+rag_dropout: 0.0
+
+# Freeze vision backbone, train projector and LLM LoRA
+freeze_vision_backbone: true
+freeze_projector: false
+
+# Training
+batch_size: 4
+grad_accum_steps: 8
+epochs: 6
+lr: 5e-5
+
+# Eval/logging
+eval_text_metrics: true
+eval_max_new_tokens: 512
+wandb_project: CTDoc_RAG
+wandb_run_name: radfm-baseline-v2

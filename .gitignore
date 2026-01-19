@@ -1,0 +1,31 @@
+# Large files (models on HuggingFace, results local only)
+models/checkpoints/
+models/graphs/
+models/rag_indices/
+results/
+wandb/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.log

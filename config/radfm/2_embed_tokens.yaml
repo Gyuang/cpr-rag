@@ -1,0 +1,25 @@
+# RadFM Visual Token Embedding Extraction
+# Generate visual token embeddings from fine-tuned RadFM backbone
+
+# Dataset paths
+manifest: /research/04-CT/00-RawData/RadGenome-ChestCT/ctdoc_splits/radgenome_manifest.csv
+
+# Vision backbone
+backbone: radfm
+encoder_ckpt: /research/04-CT/00-RawData/models/RadFM
+hidden_dim: 4096
+num_visual_tokens: 32
+
+# Output
+output_dir: /data/CTDoc_output
+
+# Processing
+batch_size: 4
+num_workers: 4
+splits:
+  - train
+  - val
+  - test
+
+# Accelerate settings
+num_processes: 8
