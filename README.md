@@ -120,13 +120,14 @@ Key configuration options in YAML files:
 If you use this code, please cite:
 
 ```bibtex
-@article{cpr-rag2024,
-  title={CPR-RAG: Clinical Prior-guided Retrieval-Augmented Generation for CT Report Generation},
-  author={},
-  year={2024}
+@inproceedings{yang2026cprrag,
+  title={CPR-RAG: Clinical Prior-Regularized Retrieval for Anatomy-Aware 3D CT Report Generation},
+  author={Yang, Sungkyu and Kim, Kang-Min and Kim, Mansu},
+  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)},
+  year={2026}
 }
 ```
 
 ## License
-
-This project is for research purposes.
+This project is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+It is intended for academic and research use only. Commercial use is prohibited.
